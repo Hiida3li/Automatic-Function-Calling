@@ -1,8 +1,7 @@
 # Automatic-Function-Calling
 
 
-# Gemini API + Function Calling with SQLite Example
-
+# Gemini API + Function Calling with SQLite 
 This is a simple but powerful example showing how to build a chatbot using Google's Gemini API with automatic function calling — allowing the model to query a live SQLite database.
 
  Project Overview:
