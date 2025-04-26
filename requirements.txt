@@ -1,1 +1,6 @@
 google-genai==1.7.0
+pandas
+seaborn
+matplotlib
+ipython
+sqlite3  # (built-in with Python 3.x, just for reference)
