@@ -1,9 +1,5 @@
 # Automatic-Function-Calling
 
-'''
-!pip install -U google-genai
-
-'''
 
 # Gemini API + Function Calling with SQLite Example
 
