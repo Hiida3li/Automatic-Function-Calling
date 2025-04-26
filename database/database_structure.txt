@@ -1,0 +1,21 @@
+1. Products Table
+
+product_id | name        | price  | category     | stock
+--------------------------------------------------------
+1          | Laptop      | 999.99 | Electronics  | 50
+2          | Smartphone  | 599.99 | Electronics  | 100
+3          | Headphones  | 79.99  | Electronics  | 200
+
+2. Staff Table
+
+staff_id | name          | position        | hire_date
+------------------------------------------------------
+1        | Alice Johnson | Sales Associate | 2023-01-15
+2        | Bob Smith     | Manager         | 2022-05-20
+
+3. Orders Table
+
+order_id | product_id | staff_id | quantity | order_date
+-------------------------------------------------------
+1        | 1          | 1        | 2        | 2024-04-20
+2        | 3          | 2        | 1        | 2024-04-21
