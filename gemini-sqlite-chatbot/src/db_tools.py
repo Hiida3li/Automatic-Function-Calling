@@ -1,6 +1,7 @@
 import sqlite3
+import os
 
-db_file = "database/sample.db"
+db_file = os.path.join(os.path.dirname(__file__), '..', 'database', 'sample.db')
 db_conn = sqlite3.connect(db_file)
 
 def list_tables() -> list[str]:
@@ -20,4 +21,3 @@ def execute_query(sql: str) -> list[list[str]]:
     cursor = db_conn.cursor()
     cursor.execute(sql)
     return cursor.fetchall()
-    
