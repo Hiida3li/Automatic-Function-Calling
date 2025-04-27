@@ -1,4 +1,4 @@
-from gemini_client import create_chat_client
+from gemini_model import create_chat_client
 
 def main():
     API_KEY = "google_api_key"  # Replace or use environment variable
@@ -16,3 +16,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
