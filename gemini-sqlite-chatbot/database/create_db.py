@@ -3,15 +3,13 @@ import random
 from datetime import datetime, timedelta
 
 # This script creates a sample SQLite database with products, staff, and orders
-# No previous experience needed - just run this script!
 
 def create_database():
     # Connect to SQLite database (it will create it if it doesn't exist)
     conn = sqlite3.connect('sample.db')
     cursor = conn.cursor()
     
-    # Create tables
-    # 1. Products table
+    # create Products table
     cursor.execute('''
     CREATE TABLE IF NOT EXISTS products (
         product_id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -22,7 +20,7 @@ def create_database():
     )
     ''')
     
-    # 2. Staff table
+    # Create Staff table
     cursor.execute('''
     CREATE TABLE IF NOT EXISTS staff (
         staff_id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -32,7 +30,7 @@ def create_database():
     )
     ''')
     
-    # 3. Orders table
+    # Create Orders table
     cursor.execute('''
     CREATE TABLE IF NOT EXISTS orders (
         order_id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -68,7 +66,9 @@ def create_database():
         ('Alice Johnson', 'Sales Associate', '2023-01-15'),
         ('Bob Smith', 'Manager', '2022-05-20'),
         ('Carol White', 'Sales Associate', '2023-03-10'),
-        ('David Brown', 'Technician', '2022-11-01')
+        ('David Brown', 'Technician', '2022-11-01'),
+        ('Micheal Hilx', 'Engineer', '2023-11-01')
+
     ]
     
     cursor.executemany('''
