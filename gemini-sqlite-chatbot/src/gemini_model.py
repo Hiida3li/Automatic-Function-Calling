@@ -1,15 +1,12 @@
 import os
-import sqlite3
 from dotenv import load_dotenv
 from google import genai
 from google.genai import types
+
+# Import functions from db_tools
 from db_tools import list_tables, describe_table, execute_query
 
-# Get the absolute path to the database file
-base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-db_file = os.path.join(base_dir, 'database', 'sample.db')
-db_conn = sqlite3.connect(db_file)
-
+# Load environment variables
 load_dotenv()
 api_key = os.getenv("google_api_key")
 
@@ -17,6 +14,7 @@ def create_chat_client(api_key: str):
     """Create Gemini chat client with function calling."""
     client = genai.Client(api_key=api_key)
     
+    # Include only the three core functions from the tutorial
     db_tools = [list_tables, describe_table, execute_query]
     
     instruction = """You are a helpful chatbot that can interact with an SQL database
@@ -36,8 +34,21 @@ def create_chat_client(api_key: str):
     )
     return chat
 
+# Test the client
 if __name__ == "__main__":
-    chat = create_chat_client(api_key)
-    resp = chat.send_message("plot all products")
-    print(f"\n{resp.text}") 
+    if not api_key:
+        print("API key not found. Make sure you have set the google_api_key in your .env file.")
+        exit(1)
+        
+    print(f"API key loaded: {'Yes' if api_key else 'No'}")
     
+    try:
+        tables = list_tables()
+        print(f"Tables in database: {tables}")
+    except Exception as e:
+        print(f"Error listing tables: {e}")
+        exit(1)
+    
+    chat = create_chat_client(api_key)
+    resp = chat.send_message("What is the cheapest product?")
+    print(f"\nResponse: {resp.text}")
