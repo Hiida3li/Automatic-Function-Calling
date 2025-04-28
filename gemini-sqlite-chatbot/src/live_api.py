@@ -65,26 +65,28 @@ async def handle_response(stream, tool_impl=None):
 async def run_live_query(api_key, user_message):
     """Run a query using the Gemini Live API with code execution."""
     
-    model = 'gemini-2.0-flash'  
+    # Use the exact same model as in the tutorial
+    model = 'gemini-2.0-flash-exp'
     
     live_client = genai.Client(
         api_key=api_key,
         http_options=types.HttpOptions(api_version='v1alpha')
     )
 
+    # Wrap the execute_query tool
     execute_query_tool_def = types.FunctionDeclaration.from_callable(
         client=live_client, 
         callable=execute_query
     )
 
+    # System instruction
     sys_int = """You are a database interface. Use the `execute_query` function
-    to answer the user's questions by looking up information in the database,
+    to answer the users questions by looking up information in the database,
     running any necessary queries and responding to the user.
 
     You need to look up table schema using sqlite3 syntax SQL, then once an
     answer is found be sure to tell the user. If the user is requesting an
-    action like inserting data or creating visualizations, you must also
-    execute these actions.
+    action, you must also execute the actions.
     """
 
     config = {
@@ -96,12 +98,32 @@ async def run_live_query(api_key, user_message):
         ],
     }
 
-    async with live_client.aio.live.connect(model=model, config=config) as session:
-        print(f"> {user_message}\n")
-        await session.send(input=user_message, end_of_turn=True)
-        responses = await handle_response(session, tool_impl=execute_query)
+    try:
+        # Display info about which model we're using
+        print(f"Connecting to Live API with model: {model}")
         
-    return responses
+        async with live_client.aio.live.connect(model=model, config=config) as session:
+            print(f"> {user_message}\n")
+            await session.send(input=user_message, end_of_turn=True)
+            responses = await handle_response(session, tool_impl=execute_query)
+            
+        return responses
+    except Exception as e:
+        print(f"Error connecting to Live API: {e}")
+        print("\nIf you encounter model not found errors, you may not have access to the experimental Live API.")
+        print("Try using the regular function calling interface instead.")
+        
+        # List available models as a fallback
+        try:
+            print("\nAvailable models for your API key:")
+            models = live_client.list_models()
+            for m in models:
+                if "flash" in m.name or "exp" in m.name:
+                    print(f"- {m.name}")
+        except:
+            pass
+            
+        return None
 
 def live_api_query(query):
     """Run a Live API query (blocking wrapper for async function)."""

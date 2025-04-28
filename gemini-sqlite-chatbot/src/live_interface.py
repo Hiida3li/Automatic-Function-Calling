@@ -4,7 +4,7 @@ from live_api import live_api_query
 
 def main():
     """Run a chat session with the Gemini Live API over the SQLite database."""
-    # Load environment variables
+    
     load_dotenv()
     api_key = os.getenv("google_api_key")
     
@@ -26,7 +26,7 @@ def main():
             break
         
         try:
-            # This handles all the async pieces internally
+            
             live_api_query(user_input)
         except Exception as e:
             print(f"Error: {e}")
