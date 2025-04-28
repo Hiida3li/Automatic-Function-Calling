@@ -17,8 +17,6 @@ gemini-sqlite-chatbot/
 │   └── utils.py
 │   └── live_api.py
 │   └── live_interface.py         
-├── notebooks/
-│   └── 03_gemini_function_calling.ipynb 
 └── assets/
     └── diagrams/
         └── function_calling_flow.png     # (Optional) Any flowcharts or screenshots

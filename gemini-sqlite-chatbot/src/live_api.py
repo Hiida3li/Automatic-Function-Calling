@@ -79,14 +79,13 @@ async def run_live_query(api_key, user_message):
         callable=execute_query
     )
 
-    # System instruction
     sys_int = """You are a database interface. Use the `execute_query` function
-    to answer the users questions by looking up information in the database,
-    running any necessary queries and responding to the user.
+    to answer questions about a computer store database with tables:
+    - products (product_id, name, price, category, stock)
+    - staff (staff_id, name, position, hire_date) 
+    - orders (order_id, product_id, staff_id, quantity, order_date)
 
-    You need to look up table schema using sqlite3 syntax SQL, then once an
-    answer is found be sure to tell the user. If the user is requesting an
-    action, you must also execute the actions.
+    First inspect table structure with PRAGMA table_info() before querying.
     """
 
     config = {
@@ -99,7 +98,6 @@ async def run_live_query(api_key, user_message):
     }
 
     try:
-        # Display info about which model we're using
         print(f"Connecting to Live API with model: {model}")
         
         async with live_client.aio.live.connect(model=model, config=config) as session:
@@ -113,7 +111,7 @@ async def run_live_query(api_key, user_message):
         print("\nIf you encounter model not found errors, you may not have access to the experimental Live API.")
         print("Try using the regular function calling interface instead.")
         
-        # List available models as a fallback
+        
         try:
             print("\nAvailable models for your API key:")
             models = live_client.list_models()
@@ -139,7 +137,6 @@ def live_api_query(query):
     return responses
 
 if __name__ == "__main__":
-    # Example usage
+    
     query = input("Enter your database query/request: ")
     live_api_query(query)
-    
