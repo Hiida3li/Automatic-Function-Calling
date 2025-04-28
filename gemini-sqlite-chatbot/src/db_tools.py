@@ -21,3 +21,13 @@ def execute_query(sql: str) -> list[list[str]]:
     cursor = db_conn.cursor()
     cursor.execute(sql)
     return cursor.fetchall()
+
+def plot_orders_per_stuff():
+    """Plot the number of orders handled by each staff member."""
+    sql= """
+    SELECT s.name, COUNT(o.order_id)
+    from orders o
+    JOIN staff s ON o.staff_id = s.staff_id
+    GROUP BY s.name
+    ORDER BY COUNT(o.order_id) DESC
+    """

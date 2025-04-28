@@ -19,8 +19,7 @@ def main():
             break
             
         response = chat.send_message(user_input)
-        print(f"Assistant: {response.text}")
+        print(f"Gemini-AI: {response.text}")
 
 if __name__ == "__main__":
     main()
-    

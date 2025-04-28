@@ -36,8 +36,8 @@ def create_chat_client(api_key: str):
     )
     return chat
 
-# Test code at the bottom of the file
 if __name__ == "__main__":
     chat = create_chat_client(api_key)
-    resp = chat.send_message("What is the cheapest product?")
+    resp = chat.send_message("plot all products")
     print(f"\n{resp.text}") 
+    
