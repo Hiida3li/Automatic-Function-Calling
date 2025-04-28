@@ -3,10 +3,8 @@ from dotenv import load_dotenv
 from google import genai
 from google.genai import types
 
-# Import functions from db_tools
 from db_tools import list_tables, describe_table, execute_query
 
-# Load environment variables
 load_dotenv()
 api_key = os.getenv("google_api_key")
 
@@ -14,7 +12,6 @@ def create_chat_client(api_key: str):
     """Create Gemini chat client with function calling."""
     client = genai.Client(api_key=api_key)
     
-    # Include only the three core functions from the tutorial
     db_tools = [list_tables, describe_table, execute_query]
     
     instruction = """You are a helpful chatbot that can interact with an SQL database
@@ -34,7 +31,6 @@ def create_chat_client(api_key: str):
     )
     return chat
 
-# Test the client
 if __name__ == "__main__":
     if not api_key:
         print("API key not found. Make sure you have set the google_api_key in your .env file.")

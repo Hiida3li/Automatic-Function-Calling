@@ -5,7 +5,6 @@ from utils import print_chat_turns
 
 def main():
     """Run a chat session with the Gemini API over the SQLite database."""
-    # Load environment variables
     load_dotenv()
     api_key = os.getenv("google_api_key")
     
@@ -13,7 +12,6 @@ def main():
         print("ERROR: API key not found! Make sure you have a .env file with google_api_key set.")
         return
     
-    # Create chat client
     print("Initializing chat client...")
     chat = create_chat_client(api_key)
     
@@ -42,4 +40,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-    
