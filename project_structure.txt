@@ -2,17 +2,21 @@ gemini-sqlite-chatbot/
 │
 ├── README.md            # Project overview and instructions (the one we just wrote)
 ├── requirements.txt     # List of required Python packages
+├── LICENSE 
+├── .env.example
 │
 ├── database/
 │   ├── create_db.py      # Script to create and seed the SQLite database
 │   └── sample.db         # Generated SQLite database (auto-created when you run create_db.py)
+│   └── database_structure.txt
 │
 ├── src/
 │   ├── db_tools.py       # Database helper functions (list_tables, describe_table, execute_query)
-│   ├── gemini_client.py  # Code to connect to Gemini API and set up function calling
+│   ├── gemini_model.py  # Code to connect to Gemini API and set up function calling
 │   ├── chat_interface.py # Main script to run chat sessions with Gemini
-│   └── utils.py          # Utilities (e.g., print_chat_turns function)
-│
+│   └── utils.py
+│   └── live_api.py
+│   └── live_interface.py         
 ├── notebooks/
 │   └── 03_gemini_function_calling.ipynb 
 └── assets/
