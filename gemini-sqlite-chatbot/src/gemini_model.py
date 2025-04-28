@@ -1,9 +1,14 @@
-# gemini_model.py
 import os
+import sqlite3
 from dotenv import load_dotenv
 from google import genai
 from google.genai import types
 from db_tools import list_tables, describe_table, execute_query
+
+# Get the absolute path to the database file
+base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+db_file = os.path.join(base_dir, 'database', 'sample.db')
+db_conn = sqlite3.connect(db_file)
 
 load_dotenv()
 api_key = os.getenv("google_api_key")

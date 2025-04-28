@@ -1,8 +1,15 @@
+import os
+from dotenv import load_dotenv
 from gemini_model import create_chat_client
 
 def main():
-    API_KEY = "google_api_key"  # Replace or use environment variable
-    chat = create_chat_client(API_KEY)
+    load_dotenv()
+    
+    api_key = os.getenv("google_api_key")
+    
+    print(f"API key loaded: {'Yes' if api_key else 'No'}")
+    
+    chat = create_chat_client(api_key)
     
     print("Chat with SQLite database. Type 'exit' to quit.")
     
@@ -16,4 +23,4 @@ def main():
 
 if __name__ == "__main__":
     main()
-
+    

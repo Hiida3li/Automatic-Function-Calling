@@ -14,8 +14,7 @@ gemini-sqlite-chatbot/
 │   └── utils.py          # Utilities (e.g., print_chat_turns function)
 │
 ├── notebooks/
-│   └── 03_gemini_function_calling.ipynb  # Kaggle notebook version
-│
+│   └── 03_gemini_function_calling.ipynb 
 └── assets/
     └── diagrams/
         └── function_calling_flow.png     # (Optional) Any flowcharts or screenshots
