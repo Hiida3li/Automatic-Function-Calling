@@ -6,7 +6,6 @@ from google import genai
 from google.genai import types
 from db_tools import execute_query
 
-# For Jupyter notebooks
 try:
     import nest_asyncio
     nest_asyncio.apply()
@@ -32,7 +31,7 @@ async def handle_response(stream, tool_impl=None):
             for fc in tool_call.function_calls:
                 print(f"\n=== Tool Call: {fc.name} ===")
 
-                # Execute the tool and collect the result to return to the model.
+                
                 if callable(tool_impl):
                     try:
                         result = tool_impl(**fc.args)
@@ -65,7 +64,7 @@ async def handle_response(stream, tool_impl=None):
 async def run_live_query(api_key, user_message):
     """Run a query using the Gemini Live API with code execution."""
     
-    # Use the exact same model as in the tutorial
+    
     model = 'gemini-2.0-flash-exp'
     
     live_client = genai.Client(
@@ -73,7 +72,7 @@ async def run_live_query(api_key, user_message):
         http_options=types.HttpOptions(api_version='v1alpha')
     )
 
-    # Wrap the execute_query tool
+    
     execute_query_tool_def = types.FunctionDeclaration.from_callable(
         client=live_client, 
         callable=execute_query

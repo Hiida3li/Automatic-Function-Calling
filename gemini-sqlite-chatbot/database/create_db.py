@@ -9,7 +9,7 @@ def create_database():
     conn = sqlite3.connect('sample.db')
     cursor = conn.cursor()
     
-    # create Products table
+    
     cursor.execute('''
     CREATE TABLE IF NOT EXISTS products (
         product_id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -20,7 +20,7 @@ def create_database():
     )
     ''')
     
-    # Create Staff table
+    
     cursor.execute('''
     CREATE TABLE IF NOT EXISTS staff (
         staff_id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -30,7 +30,7 @@ def create_database():
     )
     ''')
     
-    # Create Orders table
+    
     cursor.execute('''
     CREATE TABLE IF NOT EXISTS orders (
         order_id INTEGER PRIMARY KEY AUTOINCREMENT,
