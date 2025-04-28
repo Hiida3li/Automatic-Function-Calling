@@ -33,3 +33,4 @@ def execute_query(sql: str) -> list[list[str]]:
     cursor = db_conn.cursor()
     cursor.execute(sql)
     return cursor.fetchall()
+
