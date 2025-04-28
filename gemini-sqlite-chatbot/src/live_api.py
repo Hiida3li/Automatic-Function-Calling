@@ -21,14 +21,14 @@ async def handle_response(stream, tool_impl=None):
         all_responses.append(msg)
 
         if text := msg.text:
-            # Output any text chunks that are streamed back.
+            
             if len(all_responses) < 2 or not all_responses[-2].text:
-                # Print a header if this is the first text chunk.
+                
                 print("\n=== Text ===")
             print(text, end='')
 
         elif tool_call := msg.tool_call:
-            # Handle tool-call requests.
+            
             for fc in tool_call.function_calls:
                 print(f"\n=== Tool Call: {fc.name} ===")
 
